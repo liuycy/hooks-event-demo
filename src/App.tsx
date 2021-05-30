@@ -1,6 +1,5 @@
 import * as React from 'react';
 import SearchInput from './SearchInput';
-import { useDebounce } from './hooks';
 
 function App() {
   const [params, updateParams] = React.useState({ keyword: '' });
