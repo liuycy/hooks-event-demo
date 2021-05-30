@@ -8,6 +8,10 @@ interface Props {
 const SearchInput: React.FC<Props> = ({ onChange }) => {
   const [params, updateParams] = React.useState('');
 
+  React.useEffect(() => {
+    console.log('props.onChange has changed.');
+  }, [onChange]);
+
   const debouncedChange = useDebounce(onChange);
 
   function handleValueChange(value: string) {
