@@ -3,9 +3,12 @@ import SearchInput from './SearchInput';
 
 function App() {
   const [params, updateParams] = React.useState({ keyword: '' });
+  const [pager, setPager] = React.useState({});
   const [output, updateOutput] = React.useState('');
 
   const handleChange = (obj: any) => {
+    const newPager = { ...pager, current: 1 };
+    setPager(newPager);
     const newParams = { ...obj };
     updateParams(newParams);
     updateOutput(`keyword: ${newParams.keyword}`);

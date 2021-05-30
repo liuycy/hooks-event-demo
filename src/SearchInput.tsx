@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { useDebounce } from './hooks';
+
 interface Props {
   onChange: (val: any) => void;
 }
@@ -6,9 +8,11 @@ interface Props {
 const SearchInput: React.FC<Props> = ({ onChange }) => {
   const [params, updateParams] = React.useState('');
 
+  const debouncedChange = useDebounce(onChange);
+
   function handleValueChange(value: string) {
     updateParams(value);
-    onChange({ keyword: value });
+    debouncedChange({ keyword: value });
   }
 
   return (
