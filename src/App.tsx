@@ -6,12 +6,19 @@ function App() {
   const [pager, setPager] = React.useState({} as any);
   const [output, updateOutput] = React.useState('');
 
+  const handleFetch = (newParams: any, newPager: any) => {
+    updateOutput(
+      `keyword: ${newParams.keyword}, pager: ${newPager.current}, ${newPager.size}`
+    );
+    setPager({ ...newPager, size: ~~(100 * Math.random()) });
+  };
+
   const handleChange = React.useCallback((obj: any) => {
     const newPager = { ...pager, current: 1 };
     setPager(newPager);
     const newParams = { ...obj };
     updateParams(newParams);
-    updateOutput(`keyword: ${newParams.keyword}`);
+    handleFetch(newParams, newPager);
   }, []);
 
   return (
