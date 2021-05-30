@@ -14,11 +14,12 @@ function App() {
   };
 
   const handleChange = React.useCallback((obj: any) => {
-    const newPager = { ...pager, current: 1 };
-    setPager(newPager);
-    const newParams = { ...obj };
-    updateParams(newParams);
-    handleFetch(newParams, newPager);
+    setPager((pager: any) => {
+      const newPager = { ...pager, current: 1 };
+      const newParams = { ...obj };
+      updateParams(newParams);
+      handleFetch(newParams, newPager);
+    });
   }, []);
 
   return (
